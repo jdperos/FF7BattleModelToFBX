@@ -12,3 +12,5 @@ file( GLOB HdrFiles "${m_SrcDir}/public/*.h" )
 
 # add the executable
 add_executable( FF7BattleModelToFBX ${SrcFiles} ${HdrFiles} )
+
+target_include_directories( FF7BattleModelToFBX PUBLIC "${m_SrcDir}/public" )
