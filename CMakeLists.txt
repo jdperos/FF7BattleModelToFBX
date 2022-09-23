@@ -13,4 +13,6 @@ file( GLOB HdrFiles "${m_SrcDir}/public/*.h" )
 # add the executable
 add_executable( FF7BattleModelToFBX ${SrcFiles} ${HdrFiles} )
 
+set_property( GLOBAL PROPERTY VS_STARTUP_PROJECT FF7BattleModelToFBX )
+
 target_include_directories( FF7BattleModelToFBX PUBLIC "${m_SrcDir}/public" )
