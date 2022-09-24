@@ -35,7 +35,7 @@ target_include_directories( FF7BattleModelToFBX PUBLIC ${m_SrcDir}/public )
 # Make sure to use the appropriate runtime library for your version of Visual Studio, and for the processor architecture of your target application. 
 # The FBX libraries are organized into subdirectories under <yourFBXSDKpath>\lib according to their Visual Studio version, processor type, and build mode:
 # <yourFBXSDKpath>\lib\<compiler_version>\<processor_type>\<build_mode>
-set( FBX_RootDir   "E:/Autodesk/FBX/FBX SDK/2020.3.2" SDK CACHE FILEPATH "Root directory of FBX SDK, which includes the /include/ and /lib/ folders" )
+set( FBX_RootDir   "E:/Autodesk/FBX/FBX SDK/2020.3.2" CACHE FILEPATH "Root directory of FBX SDK, which includes the /include/ and /lib/ folders" )
 set( FBX_VSVersion "vs2019" CACHE STRING "Version of VS compiler. Must match the directory name in FBX_RootDir/lib/" )
 set_property( CACHE FBX_VSVersion PROPERTY STRINGS vs2017 vs2019 )
 set( FBX_Config "debug" CACHE STRING "Release type must be set for FBX to pull from the right lib directory" )
