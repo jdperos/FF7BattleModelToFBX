@@ -16,6 +16,11 @@ else()
     set( m_Platform "x64" )
 endif()
 
+# Build currently only works as x86 because of inline assembly code
+if( NOT CMAKE_GENERATOR_PLATFORM MATCHES "Win32" )
+    message( FATAL_ERROR "Non Win32 builds not currently supported, as inline asm exists in code" )
+endif()
+
 file( GLOB SrcFiles ${m_SrcDir}/private/*.cpp )
 file( GLOB HdrFiles ${m_SrcDir}/public/*.h )
 
@@ -30,7 +35,7 @@ target_include_directories( FF7BattleModelToFBX PUBLIC ${m_SrcDir}/public )
 # Make sure to use the appropriate runtime library for your version of Visual Studio, and for the processor architecture of your target application. 
 # The FBX libraries are organized into subdirectories under <yourFBXSDKpath>\lib according to their Visual Studio version, processor type, and build mode:
 # <yourFBXSDKpath>\lib\<compiler_version>\<processor_type>\<build_mode>
-set( FBX_RootDir   ${m_MainDir}/libs/FBX SDK CACHE FILEPATH "Root directory of FBX SDK, which includes the /include/ and /lib/ folders" )
+set( FBX_RootDir   "E:/Autodesk/FBX/FBX SDK/2020.3.2" SDK CACHE FILEPATH "Root directory of FBX SDK, which includes the /include/ and /lib/ folders" )
 set( FBX_VSVersion "vs2019" CACHE STRING "Version of VS compiler. Must match the directory name in FBX_RootDir/lib/" )
 set_property( CACHE FBX_VSVersion PROPERTY STRINGS vs2017 vs2019 )
 set( FBX_Config "debug" CACHE STRING "Release type must be set for FBX to pull from the right lib directory" )
