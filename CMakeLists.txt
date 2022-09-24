@@ -36,10 +36,10 @@ target_include_directories( FF7BattleModelToFBX PUBLIC ${m_SrcDir}/public )
 # The FBX libraries are organized into subdirectories under <yourFBXSDKpath>\lib according to their Visual Studio version, processor type, and build mode:
 # <yourFBXSDKpath>\lib\<compiler_version>\<processor_type>\<build_mode>
 set( FBX_RootDir   "E:/Autodesk/FBX/FBX SDK/2020.3.2" CACHE FILEPATH "Root directory of FBX SDK, which includes the /include/ and /lib/ folders" )
-set( FBX_VSVersion "vs2019" CACHE STRING "Version of VS compiler. Must match the directory name in FBX_RootDir/lib/" )
+set( FBX_VSVersion "vs2019"                           CACHE STRING   "Version of VS compiler. Must match the directory name in FBX_RootDir/lib/" ) 
+set( FBX_Config    "debug"                            CACHE STRING   "Release type must be set for FBX to pull from the right lib directory"     ) 
 set_property( CACHE FBX_VSVersion PROPERTY STRINGS vs2017 vs2019 )
-set( FBX_Config "debug" CACHE STRING "Release type must be set for FBX to pull from the right lib directory" )
-set_property( CACHE FBX_Config PROPERTY STRINGS debug release )
+set_property( CACHE FBX_Config    PROPERTY STRINGS debug release )
 
 # 6. In the property tree on the left of the Property Pages dialog, choose Configuration Properties > C/C++ > General.
 # 7. In the properties sheet on the right of the dialog, select <Edit..> in the Additional Include Directories drop-down box. The Additional Include Directories dialog appears.
@@ -63,7 +63,7 @@ add_compile_definitions( FBXSDK_SHARED )
 
 # Need to copy file to output
 add_custom_command(
-    TARGET FF7BattleModelToFBX POST_BUILD                                                 # Adds a post-build event to FF7BattleModelToFBX
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different                                         # which executes "cmake - E copy_if_different..."
-        ${m_libfbxsdkPath}/libfbxsdk.dll                                                  # <--this is in-file
-        $<TARGET_FILE_DIR:FF7BattleModelToFBX>)                                           # <--this is out-file path
+    TARGET FF7BattleModelToFBX POST_BUILD           # Adds a post-build event to FF7BattleModelToFBX
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different   # which executes "cmake - E copy_if_different..."
+        ${m_libfbxsdkPath}/libfbxsdk.dll            # <--this is in-file
+        $<TARGET_FILE_DIR:FF7BattleModelToFBX>)     # <--this is out-file path
